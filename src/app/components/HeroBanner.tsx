@@ -3,13 +3,19 @@ import Link from "next/link";
 import React from "react";
 import { urlFor } from "@/lib/client";
 
-// Optional: define types for clarity
+interface ProductImage {
+  _type: "image";
+  asset: {
+    _ref: string;
+    _type: "reference";
+  };
+}
 interface HeroBannerProps {
   heroBanner: {
     smallText: string;
     midText: string;
     largeText1: string;
-    image: string;
+    image: ProductImage;
     product: string;
     buttonText: string;
     desc: string;
