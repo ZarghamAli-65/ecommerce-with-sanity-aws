@@ -12,6 +12,7 @@ interface ProductImage {
 interface Product {
   _id: string;
   name: string;
+  quantity: number;
   slug: { current: string };
   image: ProductImage[];
   price: number;

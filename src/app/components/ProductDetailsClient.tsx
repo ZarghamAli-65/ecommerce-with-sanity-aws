@@ -10,6 +10,7 @@ import {
 } from "react-icons/ai";
 import Product from "@/app/components/Product";
 import { urlFor } from "@/lib/client";
+import { useStateContext } from "@/app/context/StateContext";
 
 interface ProductImage {
   _type: "image";
@@ -22,6 +23,7 @@ interface ProductImage {
 interface Products {
   _id: string;
   name: string;
+  quantity: number;
   slug: { current: string };
   image: ProductImage[];
   price: number;
@@ -35,6 +37,7 @@ interface Props {
 
 const ProductDetailsClient = ({ product, products }: Props) => {
   const [index, setIndex] = useState(0);
+  const { incQty, decQty, qty, onAdd } = useStateContext();
 
   return (
     <div>
@@ -84,18 +87,22 @@ const ProductDetailsClient = ({ product, products }: Props) => {
           <div className="quantity">
             <h3>Quantity</h3>
             <p className="quantity-desc">
-              <span className="minus">
+              <span className="minus" onClick={decQty}>
                 <AiOutlineMinus />
               </span>
-              <span className="num">0</span>
-              <span className="plus">
+              <span className="num">{qty}</span>
+              <span className="plus" onClick={incQty}>
                 <AiOutlinePlus />
               </span>
             </p>
           </div>
 
           <div className="buttons">
-            <button type="button" className="add-to-cart">
+            <button
+              type="button"
+              className="add-to-cart"
+              onClick={() => onAdd(product, qty)}
+            >
               Add to Cart
             </button>
             <button type="button" className="buy-now">
