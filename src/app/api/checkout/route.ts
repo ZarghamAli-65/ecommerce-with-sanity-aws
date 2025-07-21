@@ -45,8 +45,8 @@ export async function POST(req: Request) {
                     quantity: item.quantity,
                 }
             }),
-            success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${origin}/?canceled=true`,
+            success_url: `${origin}/success`,
+            cancel_url: `${origin}/?canceled`,
         });
 
         return NextResponse.json(session, { status: 200 });

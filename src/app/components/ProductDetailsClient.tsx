@@ -37,7 +37,13 @@ interface Props {
 
 const ProductDetailsClient = ({ product, products }: Props) => {
   const [index, setIndex] = useState(0);
-  const { incQty, decQty, qty, onAdd } = useStateContext();
+  const { incQty, decQty, qty, onAdd, setShowCart } = useStateContext();
+
+  const handleBuyNow = async () => {
+    onAdd(product, qty);
+
+    setShowCart(true);
+  };
 
   return (
     <div>
@@ -105,8 +111,8 @@ const ProductDetailsClient = ({ product, products }: Props) => {
             >
               Add to Cart
             </button>
-            <button type="button" className="buy-now">
-              Shop Now
+            <button type="button" className="buy-now" onClick={handleBuyNow}>
+              Buy Now
             </button>
           </div>
         </div>

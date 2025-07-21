@@ -23,8 +23,11 @@ interface StateContextType {
   showCart: boolean;
   setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
   cartItems: Product[];
+  setCartItems: React.Dispatch<React.SetStateAction<Product[]>>;
   totalPrice: number;
+  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
   totalQuantities: number;
+  setTotalQuantities: React.Dispatch<React.SetStateAction<number>>;
   qty: number;
   incQty: () => void;
   decQty: () => void;
@@ -120,6 +123,9 @@ export const StateContext = ({ children }: StateContextProps) => {
         onAdd,
         onRemove,
         toggleCartItemQuanitity,
+        setCartItems,
+        setTotalPrice,
+        setTotalQuantities,
       }}
     >
       {children}
